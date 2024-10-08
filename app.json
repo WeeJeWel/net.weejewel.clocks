@@ -27,6 +27,14 @@
     "name": "Emile Nijssen",
     "email": "emile@athom.nl"
   },
+  "support": "mailto:emile@emile.nl",
+  "contributors": {
+    "developers": [
+      {
+        "name": "Bas van der Ploeg"
+      }
+    ]
+  },
   "widgets": {
     "analog-clock-1": {
       "name": {
