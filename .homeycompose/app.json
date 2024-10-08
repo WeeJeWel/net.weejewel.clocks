@@ -25,5 +25,12 @@
   "author": {
     "name": "Emile Nijssen",
     "email": "emile@athom.nl"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Bas van der Ploeg"
+      }
+    ]
   }
 }
