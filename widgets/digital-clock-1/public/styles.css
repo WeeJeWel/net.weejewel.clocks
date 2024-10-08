@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", system, -apple-system, "Helvetica Neue", Helvetica, sans-serif;
+    background-color: #F4F4FA;
+    color: #1C1C1C;
+    max-width: 450px;
+    margin: auto;
+    -webkit-user-select: none; 
+    user-select: none;
+    cursor: default;
+}
+
+.selectable{
+  -webkit-user-select: auto; /* Safari */
+  user-select: auto;
+  cursor: auto;
+}
+
+.back-banner {
+    width: 100%;
+    height: 160px;
+    background-color: none;
+    color: white;
+    padding: 0px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 16px; /* Creates a 20px gap between the two inner divs */
+}
+
+.inner-div {
+    flex: 1;
+    background-color: #1F2029;
+    border-radius: 10px;
+    overflow:hidden;
+  
+    display: flex;
+    justify-content: center;  /* Centers horizontally */
+    align-items: center;      /* Centers vertically */
+}
+
+.clock-date {
+    flex: 1;
+    background-color: #1F2029;
+    border-radius: 10px;
+    overflow:hidden;
+  
+    display: flex;
+    justify-content: center;  /* Centers horizontally */
+    align-items: center;      /* Centers vertically */
+    font-size: 30px;
+    text-align: center;
+}
+
+
+
+
+.clock-test {
+   font-size: 120px;
+   /* font-weight: 600; */
+   line-height: 120px;
+   font-family: system-ui, sans-serif;
+   font-variation-settings: "wght" 100, "wdth" 40;
+   background-color: none;
+   overflow: hidden;
+}
+
+ .colon {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    padding-bottom: 0px;
+    margin-top: -40px;
+    display: inline-block;
+    background-color:none;
+    height: 120px;
+    overflow: hidden;
+    
+}
+
+
+
+
+
+
+
+
+
+
+.widget-title {
+   font-size: 20px;
+   font-weight: 600;
+   line-height: 24px;
+   color: #1C1C1C;
+   margin-bottom: 10px;
+}
+
+
+.refresh-button {
+    position: absolute;
+    bottom: -44px;
+    right: 14px;
+    background-color: rgba(255,255,255,0.3);
+    box-shadow: 0 4px 17px 0 rgba(0,0,0,0.04), 0 2px 5px 0 rgba(0,0,0,0.05), 0 2px 2px 0 rgba(0,0,0,0.02);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: bottom 0.3s ease-out, background-color 0.3s;
+    z-index: 1000;
+    font-size: 26px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+.refresh-button:hover {
+    background-color: rgba(255,255,255,0.4);
+}
+.back-banner:hover .refresh-button {
+    bottom: 14px;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+
+
+
+.info-banner{
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    background-color: white;
+    color: black;
+    position: relative;
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: 10px;
+}
+
+
+.transparent {
+    background-color: inherit;
+    color: inherit;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #111218;
+    color: white;
+  }
+  .widget-title {color: white;}
+
+}

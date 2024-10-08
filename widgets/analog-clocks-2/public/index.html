@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Homey Widget</title>
+    <link
+        rel="stylesheet"
+        href="styles.css"
+    >
+    <style>
+        body,
+        html {
+            overflow: hidden;
+        }
+
+        body {
+            padding: 0.5em;
+            background-color: #121317;
+        }
+    </style>
+</head>
+
+<body id="select">
+    <div
+        class="back-banner transparent"
+        id="banner"
+    >
+        <div
+            class="clockwrapper"
+            id="clocks-container"
+        ></div>
+    </div>
+
+    <script>
+        const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+        function createClock(timeZone) {
+            const container = document.createElement('div');
+            container.classList.add('clock-container');
+
+            const clock = document.createElement('div');
+            clock.classList.add('clock', timeZone.style);  // Add style class here
+
+            const infoTop = document.createElement('div');
+            infoTop.classList.add('clock-info-bottom');
+            clock.appendChild(infoTop);
+
+            const infoBottom = document.createElement('div');
+            infoBottom.classList.add('clock-info-top');
+            infoBottom.innerText = timeZone.label;
+            clock.appendChild(infoBottom);
+
+            const hourHand = document.createElement('div');
+            hourHand.classList.add('hand', 'hour');
+            clock.appendChild(hourHand);
+
+            const minuteHand = document.createElement('div');
+            minuteHand.classList.add('hand', 'minute');
+            clock.appendChild(minuteHand);
+
+            const secondHand = document.createElement('div');
+            secondHand.classList.add('hand', 'second');
+            clock.appendChild(secondHand);
+
+            container.appendChild(clock);
+            document.getElementById('clocks-container').appendChild(container);
+
+            return { hourHand, minuteHand, secondHand, clock, timeZone: timeZone.timeZone, infoTop };
+        }
+
+        function getTimeInTimeZone(timeZone) {
+            const now = new Date();
+            const formatter = new Intl.DateTimeFormat('en-US', {
+                timeZone,
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: false
+            });
+
+            const parts = formatter.formatToParts(now);
+            const hours = parseInt(parts.find(part => part.type === 'hour').value);
+            const minutes = parseInt(parts.find(part => part.type === 'minute').value);
+            const seconds = parseInt(parts.find(part => part.type === 'second').value);
+
+            const milliseconds = now.getMilliseconds();
+            const totalSeconds = seconds + milliseconds / 1000;
+
+            return { hours, minutes, totalSeconds };
+        }
+
+        function calculateTimeDifference(timeZone) {
+            const userTime = getTimeInTimeZone(userTimeZone);
+            const zoneTime = getTimeInTimeZone(timeZone);
+
+            const userHours = userTime.hours;
+            const zoneHours = zoneTime.hours;
+
+            let difference = zoneHours - userHours;
+            if (difference < -12) difference += 24;
+            if (difference > 12) difference -= 24;
+
+            return difference >= 0 ? `+${difference}` : `${difference}`;
+        }
+
+        function updateClocks(clocks) {
+            clocks.forEach(({ hourHand, minuteHand, secondHand, clock, timeZone, infoTop }) => {
+                const { hours, minutes, totalSeconds } = getTimeInTimeZone(timeZone);
+
+                const hourRotation = (hours % 12) * 30 + (minutes / 60) * 30;
+                const minuteRotation = minutes * 6 + (totalSeconds / 60) * 6;
+                const secondRotation = totalSeconds * 6;
+
+                hourHand.style.transform = `translateX(-50%) rotate(${hourRotation}deg)`;
+                minuteHand.style.transform = `translateX(-50%) rotate(${minuteRotation}deg)`;
+                secondHand.style.transform = `translateX(-50%) rotate(${secondRotation}deg)`;
+
+                infoTop.innerText = calculateTimeDifference(timeZone);
+
+                if (hours >= 18 || hours < 6) {
+                    clock.classList.add('dark');
+                } else {
+                    clock.classList.remove('dark');
+                }
+            });
+
+            requestAnimationFrame(() => updateClocks(clocks));
+        }
+
+        function onHomeyReady(Homey) {
+            const {
+                clock1,
+                clock2,
+                clock3,
+                clock4,
+            } = Homey.getSettings();
+
+            const clocks = [
+                {
+                    label: '',
+                    timeZone: userTimeZone,
+                    style: 'big-square',
+                },
+                clock1,
+                clock2,
+                clock3,
+                clock4,
+            ].map(clockSettings => {
+                if (!clockSettings) return null;
+                return createClock({
+                    label: clockSettings.short,
+                    timeZone: clockSettings.id,
+                    style: clockSettings.style ?? 'default',
+                });
+            })
+                .filter(clock => !!clock);
+            updateClocks(clocks);
+            Homey.ready();
+        }
+    </script>
+
+    <script>
+        function adjustFontSize() {
+            var divABC = document.getElementById('banner');
+            var divTarget = document.getElementById('clocks-container');
+
+            var widthABC = divABC.offsetWidth; // Get the width of div-abc
+            var fontSize = widthABC / 24; // Calculate the font size
+
+            divTarget.style.fontSize = fontSize + 'px'; // Set the font size
+        }
+
+        // Run the function on page load
+        window.onload = adjustFontSize;
+
+        // Optionally, run the function when the window is resized
+        window.onresize = adjustFontSize;
+
+    </script>
+
+</body>
+
+</html>

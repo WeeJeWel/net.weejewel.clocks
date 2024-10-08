@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Homey Widget</title>
+    <link
+        rel="stylesheet"
+        href="styles.css"
+    >
+    <style>
+        body,
+        html {
+            overflow: hidden;
+        }
+
+        body {
+            padding: 1em;
+            background-color: #121317;
+        }
+    </style>
+
+    <script>
+        function onHomeyReady(Homey) {
+            Homey.ready();
+        }
+    </script>
+</head>
+
+<body id="select">
+
+    <div
+        class="back-banner"
+        id="banner"
+    >
+        <div class="inner-div">
+            <div class="clock-test">
+                <span id="hours"></span><span class="colon">:</span><span id="minutes"></span>
+            </div>
+        </div>
+
+        <div class="inner-div clock-date">
+
+        </div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const date = new Date();
+            let hours = date.getHours().toString().padStart(2, '0');
+            let minutes = date.getMinutes().toString().padStart(2, '0');
+
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+        }
+
+        function blinkColon() {
+            const colon = document.querySelector('.colon');
+            colon.style.opacity = colon.style.opacity === '1' ? '0.4' : '1'; // Blink colon on and off
+        }
+
+        // Initial call to set the time
+        updateClock();
+
+        // Update the time every second
+        setInterval(updateClock, 1000);
+
+        // Blink colon every 0.5 seconds
+        setInterval(blinkColon, 500);
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to format the date in Dutch
+            function formatDateInDutch() {
+                const now = new Date();
+                const daysOfWeek = ["ZO", "MA", "DI", "WO", "DO", "VR", "ZA"];
+                const monthsOfYear = ["JAN", "FEB", "MRT", "APR", "MEI", "JUN", "JUL", "AUG", "SEP", "OKT", "NOV", "DEC"];
+
+                const dayOfWeek = daysOfWeek[now.getDay()];
+                const day = now.getDate();
+                const month = monthsOfYear[now.getMonth()];
+
+                return `${dayOfWeek}<br>${day}<br>${month}`;
+            }
+
+            // Update the div with the formatted date
+            function updateDate() {
+                const dateDiv = document.querySelector('.inner-div.clock-date');
+                if (dateDiv) {
+                    dateDiv.innerHTML = formatDateInDutch();
+                }
+            }
+
+            // Initial update
+            updateDate();
+
+            // Refresh date every minute
+            setInterval(updateDate, 60 * 1000); // 60 seconds in milliseconds
+        });
+    </script>
+
+    <script>
+        // Function to get URL parameters
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Check if "style=transparent" is in the URL
+        if (getQueryParam('style') === 'transparent') {
+            // Apply the transparent class to the banner
+            document.getElementById('banner').classList.add('transparent');
+        }
+
+        // Check if "style=transparent" is in the URL
+        if (getQueryParam('dev') === 'true') {
+            // Apply the transparent class to the banner
+            document.getElementById('select').classList.add('selectable');
+        }
+
+        // Check if "style=transparent" is in the URL
+        if (getQueryParam('refresh') === 'false') {
+            // Apply the transparent class to the banner
+            document.getElementById('refresh').classList.add('hidden');
+        }
+    </script>
+
+
+</body>
+
+</html>

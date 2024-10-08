@@ -1,0 +1,36 @@
+{
+  "name": {
+    "en": "Five Analog Clocks"
+  },
+  "height": "50%",
+  "settings": [
+    {
+      "id": "clock1",
+      "type": "autocomplete",
+      "title": {
+        "en": "Clock 1"
+      }
+    },
+    {
+      "id": "clock2",
+      "type": "autocomplete",
+      "title": {
+        "en": "Clock 2"
+      }
+    },
+    {
+      "id": "clock3",
+      "type": "autocomplete",
+      "title": {
+        "en": "Clock 3"
+      }
+    },
+    {
+      "id": "clock4",
+      "type": "autocomplete",
+      "title": {
+        "en": "Clock 4"
+      }
+    }
+  ]
+}

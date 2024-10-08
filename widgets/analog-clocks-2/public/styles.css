@@ -1,0 +1,409 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --container-width: 100vw;
+}
+#dynamic-text {
+    font-size: calc(var(--container-width) / 25);
+    transition: font-size 0.3s ease;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", system, -apple-system, "Helvetica Neue", Helvetica, sans-serif;
+    background-color: #F4F4FA;
+    color: #1C1C1C;
+    max-width: 800px;
+    margin: auto;
+    -webkit-user-select: none; 
+    user-select: none;
+    cursor: default;
+}
+
+.selectable{
+  -webkit-user-select: auto; /* Safari */
+  user-select: auto;
+  cursor: auto;
+}
+
+.back-banner {
+    width: 100%;
+    height: auto;
+    background-color: #1F2029;
+    color: white;
+    padding: 0px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    
+    display: flex;
+    justify-content: center;  /* Centers horizontally */
+    align-items: center;      /* Centers vertically */
+}
+
+.transparent {
+    background-color: inherit;
+    color: inherit;
+}
+
+.hidden {
+    display: none;
+}
+
+.widget-title {
+   font-size: 20px;
+   font-weight: 600;
+   line-height: 24px;
+   color: #1C1C1C;
+   margin-bottom: 10px;
+}
+
+
+
+
+
+#clocks-container {
+    width: 100%;
+    //display: grid;
+    //grid-template-columns: repeat(3, minmax(0, 1fr));
+    //gap: 16px;
+}
+
+.clock-container {
+    display: inline-block;
+    width: 100%;
+    margin: 0px;
+    text-align: center;
+}
+
+.clock {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    color: black;
+    background-color: #fff;
+    border-radius: 50%;
+    background-image: url('img/clock-face-light.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    overflow: hidden;
+}
+
+.dark {
+    background-image: url('img/clock-face-dark.svg');
+    background-color: #333;
+    color: white;
+}
+
+
+.hand {
+    position: absolute;
+    left: 50%;
+    transform-origin: 50% 50%;
+    background-color: #333;
+}
+
+.hour, .minute, .second {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: contain;
+    background-position: center;
+}
+
+
+
+
+.clock-info-top {
+    position: absolute;
+    width: 100%;
+    top: 18%;
+    text-align: center;
+    font-weight: 600;
+}
+
+.clock-info-bottom {
+    position: absolute;
+    width: 100%;
+    bottom: 15%;
+    text-align: center;
+    font-weight: 600;
+    opacity: 0.5;
+}
+
+
+
+
+
+
+
+
+
+
+ .clockwrapper {
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 2 / 1;
+    position: relative;
+    //background-color: grey;
+}
+
+.clockwrapper > div {
+    position: absolute;
+    //padding:8px;
+}
+
+.clockwrapper > div:nth-child(1) {
+    width: calc(50% - 8px);
+    //height: 100%;
+    background-color: transparent !important;
+    left: 0;
+    top: 0;
+    //padding-right: 2%;
+    //background-color: pink !important;
+    //padding:8px 0px;
+    //padding-right: 2%;
+}
+
+.clockwrapper > div:nth-child(1) .clock{
+    background-color: transparent !important;
+    border-radius: 10px;
+}
+
+/* HIDE CLOCK TITLE AND TIME DIFFERENCE */
+.clockwrapper > div:nth-child(1) div .clock-info-bottom {
+    display: none;
+}
+.clockwrapper > div:nth-child(1) div .clock-info-top {
+    display: none;
+}
+
+
+.clockwrapper > div:nth-child(2),
+.clockwrapper > div:nth-child(3),
+.clockwrapper > div:nth-child(4),
+.clockwrapper > div:nth-child(5) {
+    width: calc(25% - 12px);
+    height: auto;
+    //background-color: #e74c3c;
+    
+}
+
+.clockwrapper > div:nth-child(2) {
+    left: calc(50% + 12px);
+    top: 0;
+    //background-color: red;
+    //padding-right: 2%;
+}
+
+.clockwrapper > div:nth-child(3) {
+    left: calc(75% + 12px);
+    top: 0;
+    //background-color: purple;
+    //padding-left: 2%;
+}
+
+.clockwrapper > div:nth-child(4) {
+    left: calc(50% + 12px);
+    top: calc(50% + 4px);
+    //background-color: rgb(255, 229, 0);
+    //padding-right: 2%;
+    //padding-top: 2%;
+    
+}
+
+.clockwrapper > div:nth-child(5) {
+    left: calc(75% + 12px);
+    top: calc(50% + 4px);
+    //background-color: blue;
+    //padding-left: 2%;
+    //padding-top: 2%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CLOCK - DEFAULT */
+
+/* Light style face */
+.clock.default {
+    background-color: #fff;
+    color: black;
+    background-image: url('img/clock-face-light.svg');
+}
+/* Dark style face */
+.clock.default.dark{
+    background-color: #333;
+    color: white;
+    background-image: url('img/clock-face-dark.svg');
+}
+
+/* Light style hands */
+.clock.default .second {background-image: url('img/sec-hand-red.svg');}
+.clock.default .minute {background-image: url('img/min-hand-black.svg');}
+.clock.default .hour {background-image: url('img/hour-hand-black.svg');}
+
+/* Dark style hands */
+.clock.default.dark .second {background-image: url('img/sec-hand-red.svg');}
+.clock.default.dark .minute {background-image: url('img/min-hand-white.svg');}
+.clock.default.dark .hour {background-image: url('img/hour-hand-white.svg');}
+
+
+
+
+
+
+
+
+/* CLOCK - ORANGE */
+
+/* Light style face */
+.clock.orange {
+    background-color: white;
+    color: #333;
+    background-image: url('img/clock-face-simple-light.svg');
+}
+/* Dark style face */
+.clock.orange.dark{
+    background-color: black;
+    color: white;
+    background-image: url('img/clock-face-simple-dark.svg');
+}
+
+/* Light style hands */
+.clock.orange .second {background-image: url('img/sec-hand-black.svg');}
+.clock.orange .minute {background-image: url('img/min-hand-orange.svg');}
+.clock.orange .hour {background-image: url('img/hour-hand-orange.svg');}
+
+/* Dark style hands */
+.clock.orange.dark .second {background-image: url('img/sec-hand-white.svg');}
+.clock.orange.dark .minute {background-image: url('img/min-hand-orange.svg');}
+.clock.orange.dark .hour {background-image: url('img/hour-hand-orange.svg');}
+
+
+
+
+
+
+/* CLOCK - BIG SQUARE */
+
+/* Light style face */
+.clock.big-square {
+    background-color: none;
+    color: black;
+    background-image: url('img/clock-face-big-square-light.svg');
+}
+/* Dark style face */
+.clock.big-square.dark{
+    background-color: none;
+    color: white;
+    background-image: url('img/clock-face-big-square-light.svg');
+}
+
+/* Light style hands */
+.clock.big-square .second {background-image: url('img/sec-hand-big-orange.svg');}
+.clock.big-square .minute {background-image: url('img/min-hand-big-black.svg');}
+.clock.big-square .hour {background-image: url('img/hour-hand-big-black.svg');}
+
+/* Dark style hands */
+.clock.big-square.dark .second {background-image: url('img/sec-hand-big-orange.svg');}
+.clock.big-square.dark .minute {background-image: url('img/min-hand-big-black.svg');}
+.clock.big-square.dark .hour {background-image: url('img/hour-hand-big-black.svg');}
+
+
+
+
+
+
+
+
+
+
+.refresh-button {
+    position: absolute;
+    bottom: -44px;
+    right: 14px;
+    background-color: rgba(128, 128, 128, 0.3);
+    box-shadow: 0 4px 17px 0 rgba(0,0,0,0.04), 0 2px 5px 0 rgba(0,0,0,0.05), 0 2px 2px 0 rgba(0,0,0,0.02);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: bottom 0.3s ease-out, background-color 0.3s;
+    z-index: 1000;
+    font-size: 26px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+.refresh-button:hover {
+    background-color: rgba(128, 128, 128, 0.4);
+}
+.back-banner:hover .refresh-button {
+    bottom: 14px;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+
+
+
+.info-banner{
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    background-color: white;
+    color: black;
+    position: relative;
+    margin-top: 14px;
+    padding: 16px;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #111218;
+    color: white;
+  }
+  .widget-title {color: white;}
+  
+  .clock.big-square {background-image: url('img/clock-face-big-square-dark.svg'); background-color: none;}
+  .clock.big-square.dark{background-image: url('img/clock-face-big-square-dark.svg'); background-color: none;}
+  
+  .clock.big-square .second {background-image: url('img/sec-hand-big-orange.svg');}
+  .clock.big-square .minute {background-image: url('img/min-hand-big-white.svg');}
+  .clock.big-square .hour {background-image: url('img/hour-hand-big-white.svg');}
+  
+  .clock.big-square.dark .second {background-image: url('img/sec-hand-big-orange.svg');}
+  .clock.big-square.dark .minute {background-image: url('img/min-hand-big-white.svg');}
+  .clock.big-square.dark .hour {background-image: url('img/hour-hand-big-white.svg');}
+
+
+}

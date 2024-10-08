@@ -1,0 +1,132 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "net.weejewel.clocks",
+  "version": "1.0.0",
+  "compatibility": ">=12.1.0",
+  "brandColor": "#000000",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Clocks"
+  },
+  "description": {
+    "en": "Beautiful Clocks for Homey Dashboards."
+  },
+  "category": [
+    "tools"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Emile Nijssen",
+    "email": "emile@athom.nl"
+  },
+  "widgets": {
+    "analog-clock-1": {
+      "name": {
+        "en": "Analog Clock (Round)"
+      },
+      "height": "100%",
+      "settings": [],
+      "id": "analog-clock-1"
+    },
+    "analog-clock-2": {
+      "name": {
+        "en": "Analog Clock (Square)"
+      },
+      "height": "100%",
+      "settings": [],
+      "id": "analog-clock-2"
+    },
+    "analog-clocks-1": {
+      "name": {
+        "en": "Three Analog Clocks"
+      },
+      "height": "33.3%",
+      "settings": [
+        {
+          "id": "clock1",
+          "type": "autocomplete",
+          "title": {
+            "en": "Clock 1"
+          }
+        },
+        {
+          "id": "clock2",
+          "type": "autocomplete",
+          "title": {
+            "en": "Clock 2"
+          }
+        },
+        {
+          "id": "clock3",
+          "type": "autocomplete",
+          "title": {
+            "en": "Clock 3"
+          }
+        }
+      ],
+      "id": "analog-clocks-1"
+    },
+    "analog-clocks-2": {
+      "name": {
+        "en": "Five Analog Clocks"
+      },
+      "height": "50%",
+      "settings": [
+        {
+          "id": "clock1",
+          "type": "autocomplete",
+          "title": {
+            "en": "Clock 1"
+          }
+        },
+        {
+          "id": "clock2",
+          "type": "autocomplete",
+          "title": {
+            "en": "Clock 2"
+          }
+        },
+        {
+          "id": "clock3",
+          "type": "autocomplete",
+          "title": {
+            "en": "Clock 3"
+          }
+        },
+        {
+          "id": "clock4",
+          "type": "autocomplete",
+          "title": {
+            "en": "Clock 4"
+          }
+        }
+      ],
+      "id": "analog-clocks-2"
+    },
+    "digital-clock-1": {
+      "name": {
+        "en": "Digital Clock"
+      },
+      "height": 180,
+      "settings": [],
+      "id": "digital-clock-1"
+    },
+    "ns": {
+      "name": {
+        "en": "Dutch Railways",
+        "nl": "Nederlandse Spoorwegen"
+      },
+      "height": "100%",
+      "settings": [],
+      "id": "ns"
+    }
+  }
+}
