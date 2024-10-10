@@ -289,7 +289,7 @@ body {
 
 
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) { */
   body {
     background-color: #111218;
     color: white;
@@ -307,4 +307,4 @@ body {
   .clock.big-numbers.dark .minute {background-image: url('img/min-hand-big-white.svg');}
   .clock.big-numbers.dark .hour {background-image: url('img/hour-hand-big-white.svg');}
 
-}
+/* } */
