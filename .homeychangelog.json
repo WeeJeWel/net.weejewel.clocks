@@ -4,5 +4,8 @@
   },
   "1.0.0": {
     "en": "First version! It was time."
+  },
+  "1.1.0": {
+    "en": "Added a flip clock, made some clocks transparent, and fixed some bugs."
   }
 }
