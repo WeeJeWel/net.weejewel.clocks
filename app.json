@@ -42,6 +42,7 @@
         "en": "Analog Clock (Round)"
       },
       "height": "100%",
+      "transparent": true,
       "settings": [],
       "id": "analog-clock-1"
     },
@@ -58,6 +59,7 @@
         "en": "Three Analog Clocks"
       },
       "height": "33.3%",
+      "transparent": true,
       "settings": [
         {
           "id": "clock1",
@@ -124,9 +126,19 @@
       "name": {
         "en": "Digital Clock"
       },
-      "height": 180,
+      "height": 160,
+      "transparent": true,
       "settings": [],
       "id": "digital-clock-1"
+    },
+    "flip-clock-1": {
+      "name": {
+        "en": "Flip Clock"
+      },
+      "height": 93,
+      "transparent": true,
+      "settings": [],
+      "id": "flip-clock-1"
     },
     "ns": {
       "name": {
@@ -134,6 +146,7 @@
         "nl": "Nederlandse Spoorwegen"
       },
       "height": "100%",
+      "transparent": true,
       "settings": [],
       "id": "ns"
     }

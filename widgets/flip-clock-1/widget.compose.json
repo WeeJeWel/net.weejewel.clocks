@@ -1,8 +1,8 @@
 {
   "name": {
-    "en": "Analog Clock (Round)"
+    "en": "Flip Clock"
   },
-  "height": "100%",
+  "height": 93,
   "transparent": true,
   "settings": []
 }

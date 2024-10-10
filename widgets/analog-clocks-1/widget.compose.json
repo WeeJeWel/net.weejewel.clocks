@@ -3,6 +3,7 @@
     "en": "Three Analog Clocks"
   },
   "height": "33.3%",
+  "transparent": true,
   "settings": [
     {
       "id": "clock1",

@@ -1,0 +1,109 @@
+<link
+    href="./flip.min.css"
+    rel="stylesheet"
+>
+<script src="./flip.min.js"></script>
+
+<style>
+    html,
+    body {
+        overflow: hidden;
+    }
+
+    .tick {
+        font-size: 66px;
+        white-space: nowrap;
+        font-family: Roboto, Arial, sans-serif;
+        margin-left: -3px;
+    }
+
+    .tick-group {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tick-group>span:last-child {
+        margin-left: -40px;
+    }
+
+    .tick-credits {
+        display: none;
+    }
+
+    .tick-flip-shadow {
+        display: none;
+    }
+</style>
+
+<div
+    class="tick"
+    data-did-init="setupFlip"
+>
+    <div class="tick-group">
+        <span
+            data-key="hours1"
+            data-transform="pad(0)"
+            data-view="flip"
+        ></span>
+        <span
+            data-key="hours2"
+            data-transform="pad(0)"
+            data-view="flip"
+        ></span>
+    </div>
+
+    <div class="tick-group">
+        <span
+            data-key="minutes1"
+            data-transform="pad(0)"
+            data-view="flip"
+        ></span>
+        <span
+            data-key="minutes2"
+            data-transform="pad(0)"
+            data-view="flip"
+        ></span>
+    </div>
+
+    <div class="tick-group">
+        <span
+            data-key="seconds1"
+            data-transform="pad(0)"
+            data-view="flip"
+        ></span>
+        <span
+            data-key="seconds2"
+            data-transform="pad(0)"
+            data-view="flip"
+        ></span>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    function onHomeyReady(Homey) {
+        Homey.ready();
+    }
+
+    function setupFlip(tick) {
+        Tick.helper.interval(function () {
+            const time = new Date().toLocaleTimeString('en-US', {
+                hour12: false
+            });
+
+            const [hh, mm, ss] = time.split(':');
+            const [h1, h2] = hh.split('');
+            const [m1, m2] = mm.split('');
+            const [s1, s2] = ss.split('');
+
+            tick.value = {
+                hours1: h1,
+                hours2: h2,
+                minutes1: m1,
+                minutes2: m2,
+                seconds1: s1,
+                seconds2: s2,
+            };
+        });
+    }
+</script>

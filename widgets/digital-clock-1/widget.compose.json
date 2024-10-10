@@ -2,6 +2,7 @@
   "name": {
     "en": "Digital Clock"
   },
-  "height": 180,
+  "height": 160,
+  "transparent": true,
   "settings": []
 }

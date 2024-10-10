@@ -4,5 +4,6 @@
     "nl": "Nederlandse Spoorwegen"
   },
   "height": "100%",
+  "transparent": true,
   "settings": []
 }
