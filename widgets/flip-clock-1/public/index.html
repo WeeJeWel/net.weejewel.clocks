@@ -11,19 +11,30 @@
     }
 
     .tick {
-        font-size: 66px;
+        font-size: 13.6vw;
         white-space: nowrap;
         font-family: Roboto, Arial, sans-serif;
-        margin-left: -3px;
+
+        display: flex;
+        flex-direction: row;
     }
 
     .tick-group {
         position: relative;
-        display: inline-block;
+        display: block;
+        width: calc((100vw - 2 * 4vw) / 3);
+        border-radius: .125em;
+        overflow: hidden;
     }
 
-    .tick-group>span:last-child {
-        margin-left: -40px;
+    .tick-group:not(:last-of-type) {
+        margin-right: 4vw;
+    }
+
+    .tick-flip {
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 0;
     }
 
     .tick-credits {
@@ -39,50 +50,46 @@
     class="tick"
     data-did-init="setupFlip"
 >
-    <div class="tick-group">
-        <span
+    <div class="tick-group"><span
             data-key="hours1"
             data-transform="pad(0)"
             data-view="flip"
-        ></span>
-        <span
+        ></span><span
             data-key="hours2"
             data-transform="pad(0)"
             data-view="flip"
-        ></span>
-    </div>
+        ></span></div>
 
-    <div class="tick-group">
-        <span
+    <div class="tick-group"><span
             data-key="minutes1"
             data-transform="pad(0)"
             data-view="flip"
-        ></span>
-        <span
+        ></span><span
             data-key="minutes2"
             data-transform="pad(0)"
             data-view="flip"
-        ></span>
-    </div>
+        ></span></div>
 
-    <div class="tick-group">
-        <span
+    <div class="tick-group"><span
             data-key="seconds1"
             data-transform="pad(0)"
             data-view="flip"
-        ></span>
-        <span
+        ></span><span
             data-key="seconds2"
             data-transform="pad(0)"
             data-view="flip"
-        ></span>
-    </div>
+        ></span></div>
 
 </div>
 
 <script type="text/javascript">
+    let homeyPromiseResolve = null;
+    let homeyPromise = new Promise(resolve => {
+        homeyPromiseResolve = resolve;
+    });
+
     function onHomeyReady(Homey) {
-        Homey.ready();
+        homeyPromiseResolve(Homey);
     }
 
     function setupFlip(tick) {
@@ -104,6 +111,13 @@
                 seconds1: s1,
                 seconds2: s2,
             };
+        });
+
+        homeyPromise.then(Homey => {
+            console.log(document.querySelector('.tick').offsetHeight)
+            return Homey.ready({
+                height: document.querySelector('.tick').offsetHeight,
+            });
         });
     }
 </script>
