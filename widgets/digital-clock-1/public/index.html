@@ -22,6 +22,16 @@
             padding: 0.5em;
             background-color: #121317;
         }
+
+        @font-face {
+            font-family: PlacardNextCondensedLight;
+            src: url(./PlacardNextCondLt.ttf);
+        }
+
+        .clock-test {
+            font-family: PlacardNextCondensedLight;
+            font-variation-settings: auto;
+        }
     </style>
 
     <script>
@@ -75,11 +85,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Function to format the date in Dutch
-            function formatDateInDutch() {
+            function formatDate() {
                 const now = new Date();
-                const daysOfWeek = ["ZO", "MA", "DI", "WO", "DO", "VR", "ZA"];
-                const monthsOfYear = ["JAN", "FEB", "MRT", "APR", "MEI", "JUN", "JUL", "AUG", "SEP", "OKT", "NOV", "DEC"];
+                const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+                const monthsOfYear = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 
                 const dayOfWeek = daysOfWeek[now.getDay()];
                 const day = now.getDate();
@@ -92,7 +101,7 @@
             function updateDate() {
                 const dateDiv = document.querySelector('.inner-div.clock-date');
                 if (dateDiv) {
-                    dateDiv.innerHTML = formatDateInDutch();
+                    dateDiv.innerHTML = formatDate();
                 }
             }
 
