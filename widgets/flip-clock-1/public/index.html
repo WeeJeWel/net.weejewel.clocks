@@ -14,34 +14,53 @@
         font-size: 13.6vw;
         white-space: nowrap;
         font-family: Roboto, Arial, sans-serif;
+        font-weight: 500;
 
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: var(--homey-su-3);
+        grid-row-gap: 0px;
     }
 
     .tick-group {
         position: relative;
         display: block;
-        width: calc((100vw - 2 * 4vw) / 3);
-        border-radius: .125em;
+        border-radius: var(--homey-border-radius-default);
         overflow: hidden;
     }
 
-    .tick-group:not(:last-of-type) {
-        margin-right: 4vw;
-    }
-
     .tick-flip {
+        width: 50%;
         margin-left: 0;
         margin-right: 0;
         border-radius: 0;
     }
 
-    .tick-credits {
-        display: none;
+    .tick-flip-panel {
+        background-color: #FFFFFF;
+        color: #555555;
+        box-shadow: none;
     }
 
-    .tick-flip-shadow {
+    .homey-dark-mode .tick-flip-panel {
+        background-color: #343540;
+        color: #E0E0E3;
+    }
+
+    .tick-flip-panel-back:after {
+        opacity: 0.15;
+    }
+
+    .homey-dark-mode .tick-flip-panel-back:after {
+        opacity: 0.5;
+    }
+
+    .tick-flip-shadow,
+    .tick-flip-card-shadow,
+    .tick-flip-panel-front-shadow,
+    .tick-flip-panel-back-shadow,
+    .tick-credits {
         display: none;
     }
 </style>
@@ -114,7 +133,6 @@
         });
 
         homeyPromise.then(Homey => {
-            console.log(document.querySelector('.tick').offsetHeight)
             return Homey.ready({
                 height: document.querySelector('.tick').offsetHeight,
             });
