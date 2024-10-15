@@ -10,5 +10,8 @@
   },
   "1.1.1": {
     "en": "Fixes some bugs in the flipclock and analog clocks."
+  },
+  "1.1.2": {
+    "en": "Updated the flip clock to look better."
   }
 }
