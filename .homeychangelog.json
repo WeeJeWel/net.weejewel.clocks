@@ -13,5 +13,8 @@
   },
   "1.1.2": {
     "en": "Updated the flip clock to look better."
+  },
+  "1.2.0": {
+    "en": "Added a 12-hour option to the Flip Clock."
   }
 }
