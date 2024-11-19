@@ -63,6 +63,15 @@
     .tick-credits {
         display: none;
     }
+
+    #am_pm {
+        position: absolute;
+        z-index: 999;
+        left: 5px;
+        top: 5px;
+        color: white;
+        font-size: 11px;
+    }
 </style>
 
 <div
@@ -101,6 +110,8 @@
 
 </div>
 
+<div id="am_pm"></div>
+
 <script type="text/javascript">
     let homeyPromiseResolve = null;
     let homeyPromise = new Promise(resolve => {
@@ -112,27 +123,53 @@
     }
 
     function setupFlip(tick) {
-        Tick.helper.interval(function () {
-            const time = new Date().toLocaleTimeString('en-US', {
-                hour12: false
+        homeyPromise.then(Homey => {
+
+            const { use24HourClock } = Homey.getSettings();
+
+            Tick.helper.interval(function () {
+                if (use24HourClock === true) {
+                    const time = new Date().toLocaleTimeString('en-US', {
+                        hour12: false,
+                    });
+
+                    const [hh, mm, ss] = time.split(':');
+                    const [h1, h2] = hh.padStart(2, '0').split('');
+                    const [m1, m2] = mm.padStart(2, '0').split('');
+                    const [s1, s2] = ss.padStart(2, '0').split('');
+
+                    tick.value = {
+                        hours1: h1,
+                        hours2: h2,
+                        minutes1: m1,
+                        minutes2: m2,
+                        seconds1: s1,
+                        seconds2: s2,
+                    };
+                } else {
+                    const time = new Date().toLocaleTimeString('en-US', {
+                        hour12: true,
+                    });
+
+                    const suffix = time.slice(-2);
+                    document.getElementById('am_pm').textContent = suffix;
+
+                    const [hh, mm, ss] = time.split(':');
+                    const [h1, h2] = hh.padStart(2, '0').split('');
+                    const [m1, m2] = mm.padStart(2, '0').split('');
+                    const [s1, s2] = ss.padStart(2, '0').split('');
+
+                    tick.value = {
+                        hours1: h1,
+                        hours2: h2,
+                        minutes1: m1,
+                        minutes2: m2,
+                        seconds1: s1,
+                        seconds2: s2,
+                    };
+                }
             });
 
-            const [hh, mm, ss] = time.split(':');
-            const [h1, h2] = hh.split('');
-            const [m1, m2] = mm.split('');
-            const [s1, s2] = ss.split('');
-
-            tick.value = {
-                hours1: h1,
-                hours2: h2,
-                minutes1: m1,
-                minutes2: m2,
-                seconds1: s1,
-                seconds2: s2,
-            };
-        });
-
-        homeyPromise.then(Homey => {
             return Homey.ready({
                 height: document.querySelector('.tick').offsetHeight,
             });
