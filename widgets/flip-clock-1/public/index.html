@@ -124,7 +124,6 @@
 
     function setupFlip(tick) {
         homeyPromise.then(Homey => {
-
             const { use24HourClock } = Homey.getSettings();
 
             Tick.helper.interval(function () {
@@ -170,9 +169,11 @@
                 }
             });
 
-            return Homey.ready({
-                height: document.querySelector('.tick').offsetHeight,
-            });
+            setTimeout(() => {
+                Homey.ready({
+                    height: document.querySelector('.tick').offsetHeight,
+                });
+            }, 100);
         });
     }
 </script>
