@@ -19,5 +19,8 @@
   },
   "1.2.1": {
     "en": "Fixed an issue where the flip clock would keep loading."
+  },
+  "1.2.2": {
+    "en": "Fixed a bug in the Flipclock where the widget would never load."
   }
 }
