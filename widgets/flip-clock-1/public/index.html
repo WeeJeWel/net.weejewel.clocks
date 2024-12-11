@@ -171,7 +171,7 @@
 
             setTimeout(() => {
                 Homey.ready({
-                    height: document.querySelector('.tick').offsetHeight,
+                    height: document.querySelector('.tick').offsetHeight ?? 70,
                 });
             }, 100);
         });
