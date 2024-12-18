@@ -22,5 +22,8 @@
   },
   "1.2.2": {
     "en": "Fixed a bug in the Flipclock where the widget would never load."
+  },
+  "1.2.3": {
+    "en": "Fixed an issue where the Flip Clock widget would not load on Homey Pro (2016 — 2019)."
   }
 }
