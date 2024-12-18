@@ -1,179 +1,195 @@
-<link
-    href="./flip.min.css"
-    rel="stylesheet"
->
-<script src="./flip.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 
-<style>
-    html,
-    body {
-        overflow: hidden;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Homey Widget</title>
+</head>
 
-    .tick {
-        font-size: 13.6vw;
-        white-space: nowrap;
-        font-family: Roboto, Arial, sans-serif;
-        font-weight: 500;
+<body>
+    <link
+        href="./flip.min.css"
+        rel="stylesheet"
+    >
+    <script src="./flip.min.js"></script>
 
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: 1fr;
-        grid-column-gap: var(--homey-su-3);
-        grid-row-gap: 0px;
-    }
+    <style>
+        html,
+        body {
+            overflow: hidden;
+        }
 
-    .tick-group {
-        position: relative;
-        display: block;
-        border-radius: var(--homey-border-radius-default);
-        overflow: hidden;
-    }
+        .tick {
+            font-size: 13.6vw;
+            white-space: nowrap;
+            font-family: Roboto, Arial, sans-serif;
+            font-weight: 500;
 
-    .tick-flip {
-        width: 50%;
-        margin-left: 0;
-        margin-right: 0;
-        border-radius: 0;
-    }
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 1fr;
+            grid-column-gap: var(--homey-su-3);
+            grid-row-gap: 0px;
+        }
 
-    .tick-flip-panel {
-        background-color: #FFFFFF;
-        color: #555555;
-        box-shadow: none;
-    }
+        .tick-group {
+            position: relative;
+            display: block;
+            border-radius: var(--homey-border-radius-default);
+            overflow: hidden;
+        }
 
-    .homey-dark-mode .tick-flip-panel {
-        background-color: #343540;
-        color: #E0E0E3;
-    }
+        .tick-flip {
+            width: 50%;
+            margin-left: 0;
+            margin-right: 0;
+            border-radius: 0;
+        }
 
-    .tick-flip-panel-back:after {
-        opacity: 0.15;
-    }
+        .tick-flip-panel {
+            background-color: #FFFFFF;
+            color: #555555;
+            box-shadow: none;
+        }
 
-    .homey-dark-mode .tick-flip-panel-back:after {
-        opacity: 0.5;
-    }
+        .homey-dark-mode .tick-flip-panel {
+            background-color: #343540;
+            color: #E0E0E3;
+        }
 
-    .tick-flip-shadow,
-    .tick-flip-card-shadow,
-    .tick-flip-panel-front-shadow,
-    .tick-flip-panel-back-shadow,
-    .tick-credits {
-        display: none;
-    }
+        .tick-flip-panel-back:after {
+            opacity: 0.15;
+        }
 
-    #am_pm {
-        position: absolute;
-        z-index: 999;
-        left: 5px;
-        top: 5px;
-        color: white;
-        font-size: 11px;
-    }
-</style>
+        .homey-dark-mode .tick-flip-panel-back:after {
+            opacity: 0.5;
+        }
 
-<div
-    class="tick"
-    data-did-init="setupFlip"
->
-    <div class="tick-group"><span
-            data-key="hours1"
-            data-transform="pad(0)"
-            data-view="flip"
-        ></span><span
-            data-key="hours2"
-            data-transform="pad(0)"
-            data-view="flip"
-        ></span></div>
+        .tick-flip-shadow,
+        .tick-flip-card-shadow,
+        .tick-flip-panel-front-shadow,
+        .tick-flip-panel-back-shadow,
+        .tick-credits {
+            display: none;
+        }
 
-    <div class="tick-group"><span
-            data-key="minutes1"
-            data-transform="pad(0)"
-            data-view="flip"
-        ></span><span
-            data-key="minutes2"
-            data-transform="pad(0)"
-            data-view="flip"
-        ></span></div>
+        #am_pm {
+            position: absolute;
+            z-index: 999;
+            left: 5px;
+            top: 5px;
+            color: white;
+            font-size: 11px;
+        }
+    </style>
 
-    <div class="tick-group"><span
-            data-key="seconds1"
-            data-transform="pad(0)"
-            data-view="flip"
-        ></span><span
-            data-key="seconds2"
-            data-transform="pad(0)"
-            data-view="flip"
-        ></span></div>
+    <div
+        class="tick"
+        data-did-init="setupFlip"
+    >
+        <div class="tick-group"><span
+                data-key="hours1"
+                data-transform="pad(0)"
+                data-view="flip"
+            ></span><span
+                data-key="hours2"
+                data-transform="pad(0)"
+                data-view="flip"
+            ></span></div>
 
-</div>
+        <div class="tick-group"><span
+                data-key="minutes1"
+                data-transform="pad(0)"
+                data-view="flip"
+            ></span><span
+                data-key="minutes2"
+                data-transform="pad(0)"
+                data-view="flip"
+            ></span></div>
 
-<div id="am_pm"></div>
+        <div class="tick-group"><span
+                data-key="seconds1"
+                data-transform="pad(0)"
+                data-view="flip"
+            ></span><span
+                data-key="seconds2"
+                data-transform="pad(0)"
+                data-view="flip"
+            ></span></div>
 
-<script type="text/javascript">
-    let homeyPromiseResolve = null;
-    let homeyPromise = new Promise(resolve => {
-        homeyPromiseResolve = resolve;
-    });
+    </div>
 
-    function onHomeyReady(Homey) {
-        homeyPromiseResolve(Homey);
-    }
+    <div id="am_pm"></div>
 
-    function setupFlip(tick) {
-        homeyPromise.then(Homey => {
-            const { use24HourClock } = Homey.getSettings();
-
-            Tick.helper.interval(function () {
-                if (use24HourClock === true) {
-                    const time = new Date().toLocaleTimeString('en-US', {
-                        hour12: false,
-                    });
-
-                    const [hh, mm, ss] = time.split(':');
-                    const [h1, h2] = hh.padStart(2, '0').split('');
-                    const [m1, m2] = mm.padStart(2, '0').split('');
-                    const [s1, s2] = ss.padStart(2, '0').split('');
-
-                    tick.value = {
-                        hours1: h1,
-                        hours2: h2,
-                        minutes1: m1,
-                        minutes2: m2,
-                        seconds1: s1,
-                        seconds2: s2,
-                    };
-                } else {
-                    const time = new Date().toLocaleTimeString('en-US', {
-                        hour12: true,
-                    });
-
-                    const suffix = time.slice(-2);
-                    document.getElementById('am_pm').textContent = suffix;
-
-                    const [hh, mm, ss] = time.split(':');
-                    const [h1, h2] = hh.padStart(2, '0').split('');
-                    const [m1, m2] = mm.padStart(2, '0').split('');
-                    const [s1, s2] = ss.padStart(2, '0').split('');
-
-                    tick.value = {
-                        hours1: h1,
-                        hours2: h2,
-                        minutes1: m1,
-                        minutes2: m2,
-                        seconds1: s1,
-                        seconds2: s2,
-                    };
-                }
-            });
-
-            setTimeout(() => {
-                Homey.ready({
-                    height: document.querySelector('.tick').offsetHeight ?? 70,
-                });
-            }, 100);
+    <script type="text/javascript">
+        let homeyPromiseResolve = null;
+        let homeyPromise = new Promise(resolve => {
+            homeyPromiseResolve = resolve;
         });
-    }
-</script>
+
+        function onHomeyReady(Homey) {
+            homeyPromiseResolve(Homey);
+        }
+
+        function setupFlip(tick) {
+            homeyPromise.then(Homey => {
+                const { use24HourClock } = Homey.getSettings();
+
+                Tick.helper.interval(function () {
+                    if (use24HourClock === true) {
+                        const time = new Date().toLocaleTimeString('en-US', {
+                            hour12: false,
+                        });
+
+                        const [hh, mm, ss] = time.split(':');
+                        const [h1, h2] = hh.padStart(2, '0').split('');
+                        const [m1, m2] = mm.padStart(2, '0').split('');
+                        const [s1, s2] = ss.padStart(2, '0').split('');
+
+                        tick.value = {
+                            hours1: h1,
+                            hours2: h2,
+                            minutes1: m1,
+                            minutes2: m2,
+                            seconds1: s1,
+                            seconds2: s2,
+                        };
+                    } else {
+                        const time = new Date().toLocaleTimeString('en-US', {
+                            hour12: true,
+                        });
+
+                        const suffix = time.slice(-2);
+                        document.getElementById('am_pm').textContent = suffix;
+
+                        const [hh, mm, ss] = time.split(':');
+                        const [h1, h2] = hh.padStart(2, '0').split('');
+                        const [m1, m2] = mm.padStart(2, '0').split('');
+                        const [s1, s2] = ss.padStart(2, '0').split('');
+
+                        tick.value = {
+                            hours1: h1,
+                            hours2: h2,
+                            minutes1: m1,
+                            minutes2: m2,
+                            seconds1: s1,
+                            seconds2: s2,
+                        };
+                    }
+                });
+
+                setTimeout(() => {
+                    Homey.ready({
+                        height: document.querySelector('.tick').offsetHeight ?? 70,
+                    });
+                }, 100);
+            });
+        }
+    </script>
+</body>
+
+</html>
