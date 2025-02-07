@@ -27,6 +27,8 @@
         .clock-test {
             font-family: PlacardNextCondensedLight;
             font-variation-settings: auto;
+
+            white-space: nowrap;
         }
     </style>
 
@@ -108,33 +110,6 @@
             setInterval(updateDate, 60 * 1000); // 60 seconds in milliseconds
         });
     </script>
-
-    <script>
-        // Function to get URL parameters
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
-
-        // Check if "style=transparent" is in the URL
-        if (getQueryParam('style') === 'transparent') {
-            // Apply the transparent class to the banner
-            document.getElementById('banner').classList.add('transparent');
-        }
-
-        // Check if "style=transparent" is in the URL
-        if (getQueryParam('dev') === 'true') {
-            // Apply the transparent class to the banner
-            document.getElementById('select').classList.add('selectable');
-        }
-
-        // Check if "style=transparent" is in the URL
-        if (getQueryParam('refresh') === 'false') {
-            // Apply the transparent class to the banner
-            document.getElementById('refresh').classList.add('hidden');
-        }
-    </script>
-
 
 </body>
 
