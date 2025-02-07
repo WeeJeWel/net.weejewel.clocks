@@ -25,5 +25,8 @@
   },
   "1.2.3": {
     "en": "Fixed an issue where the Flip Clock widget would not load on Homey Pro (2016 — 2019)."
+  },
+  "1.2.4": {
+    "en": "Fixed an issue where the digital clock might break line. Fixes a typo."
   }
 }
