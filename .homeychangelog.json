@@ -28,5 +28,8 @@
   },
   "1.2.4": {
     "en": "Fixed an issue where the digital clock might break line. Fixes a typo."
+  },
+  "1.3.0": {
+    "en": "Added translations for Digital Clock"
   }
 }
