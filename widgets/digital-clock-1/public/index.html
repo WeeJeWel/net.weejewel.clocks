@@ -31,12 +31,6 @@
             white-space: nowrap;
         }
     </style>
-
-    <script>
-        function onHomeyReady(Homey) {
-            Homey.ready();
-        }
-    </script>
 </head>
 
 <body id="select">
@@ -82,11 +76,11 @@
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        function onHomeyReady(Homey) {
             function formatDate() {
                 const now = new Date();
-                const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-                const monthsOfYear = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+                const daysOfWeek = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"].map(day => Homey.__(`days_of_week_short.${day}`)).map(day => day.toUpperCase());
+                const monthsOfYear = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"].map(month => Homey.__(`months_of_year_short.${month}`)).map(month => month.toUpperCase());
 
                 const dayOfWeek = daysOfWeek[now.getDay()];
                 const day = now.getDate();
@@ -108,7 +102,9 @@
 
             // Refresh date every minute
             setInterval(updateDate, 60 * 1000); // 60 seconds in milliseconds
-        });
+
+            Homey.ready();
+        }
     </script>
 
 </body>

@@ -1,0 +1,25 @@
+{
+  "days_of_week_short": {
+    "mon": "Pon",
+    "tue": "Wto",
+    "wed": "Śro",
+    "thu": "Czw",
+    "fri": "Pią",
+    "sat": "Sob",
+    "sun": "Nie"
+  },
+  "months_of_year_short": {
+    "jan": "Sty",
+    "feb": "Lut",
+    "mar": "Mar",
+    "apr": "Kwi",
+    "may": "Maj",
+    "jun": "Cze",
+    "jul": "Lip",
+    "aug": "Sie",
+    "sep": "Wrz",
+    "oct": "Paź",
+    "nov": "Lis",
+    "dec": "Gru"
+  }
+}
